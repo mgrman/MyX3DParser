@@ -57,4 +57,4 @@ For more information about the X3D standard see the following links:
 - [Rendering](https://www.web3d.org/documents/specifications/19775-1/V3.2/Part01/components/rendering.html)
 - [Time](https://www.web3d.org/documents/specifications/19775-1/V3.2/Part01/components/time.html)
 - [Interpolation](https://www.web3d.org/documents/specifications/19775-1/V3.2/Part01/components/interp.html)
-- [Event Utilities](https://www.web3d.org/documents/specifications/19775-1/V3.3/Part01/components/utils.html
+- [Event Utilities](https://www.web3d.org/documents/specifications/19775-1/V3.3/Part01/components/utils.html)
