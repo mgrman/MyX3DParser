@@ -1,0 +1,48 @@
+﻿<?xml version='1.0' encoding='utf-8'?>
+<X3D profile='Full' version='3.0' xmlns:xsd='http://www.w3.org/2001/XMLSchema-instance' xsd:noNamespaceSchemaLocation='http://www.web3d.org/specifications/x3d-3.3.xsd'>
+	<Scene>
+		<ProtoDeclare name='ProtoInner'>
+			<ProtoInterface>
+				<field name='children2' type='MFNode' accessType='inputOutput' />
+			</ProtoInterface>
+			<ProtoBody>
+				<Group>
+					<IS>
+						<connect nodeField='children' protoField='children2' />
+					</IS>
+				</Group>
+			</ProtoBody>
+		</ProtoDeclare>
+		<ProtoDeclare name='ProtoOuter'>
+			<ProtoInterface>
+				<field name='children4' type='MFNode' accessType='inputOutput' />
+				<field name='rotation' type='SFRotation' accessType='inputOutput' value='0 0 1 0' />
+				<field name='name' type='SFString' accessType='inputOutput' />
+			</ProtoInterface>
+			<ProtoBody>
+				<ProtoInstance name='ProtoInner' DEF='ProtoInner'>
+					<fieldValue name='children2'>
+						<Transform>
+							<Group containerField='children'>
+								<IS>
+									<connect nodeField='children' protoField='children4' />
+								</IS>
+							</Group>
+							<IS>
+								<connect nodeField='rotation' protoField='rotation' />
+							</IS>
+						</Transform>
+					</fieldValue>
+				</ProtoInstance>
+			</ProtoBody>
+		</ProtoDeclare>
+	
+		<ProtoInstance name='ProtoOuter' DEF='Body_59_1'>
+			<fieldValue name='children4'>
+				
+			</fieldValue>
+			<fieldValue name='rotation' value='-0.57735 -0.57735 -0.57735 2.0944' />
+			<fieldValue name='name' value='Body_59' />
+		</ProtoInstance>
+	</Scene>
+</X3D>

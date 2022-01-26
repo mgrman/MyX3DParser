@@ -1,0 +1,40 @@
+﻿@page "/download"
+@inject IJSRuntime JS
+
+<PageTitle>Download GLTF file</PageTitle>
+
+<h1>X3D to GLTF file</h1>
+
+@if (ErrorMessage != null)
+{
+    <b> @ErrorMessage</b>
+}
+
+<InputFile OnChange="@LoadFiles" />
+
+
+
+@code {
+    private string? ErrorMessage = null;
+
+    private async Task LoadFiles(InputFileChangeEventArgs e)
+    {
+        if (e.File == null || e.FileCount != 1)
+        {
+            ErrorMessage = "Please select single file!";
+            return;
+        }
+
+        ErrorMessage = null;
+        var x3d = await new StreamReader(e.File.OpenReadStream()).ReadToEndAsync();
+        
+        var fileStream = MyX3DParser.Generated.ConvertToGLTF.ConvertToGLBStream(x3d);
+        var fileName = $"{Path.GetFileNameWithoutExtension(e.File.Name)}.glb";
+
+        using var streamRef = new DotNetStreamReference(stream: fileStream);
+
+        var module = await JS.InvokeAsync<IJSObjectReference>(    "import", "./Pages/Download.razor.js");
+
+        await module.InvokeVoidAsync("downloadFileFromStream", fileName, streamRef);
+    }
+}

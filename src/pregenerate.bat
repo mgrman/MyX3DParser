@@ -1,0 +1,1 @@
+dotnet run --project ./MyX3DParser.Generator/MyX3DParser.Generator.csproj

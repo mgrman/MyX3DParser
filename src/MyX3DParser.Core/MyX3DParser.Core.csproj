@@ -1,0 +1,23 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <LangVersion>preview</LangVersion>
+  </PropertyGroup>
+
+  <Import Project="..\MyX3DParser.Shared\MyX3DParser.Shared.projitems" Label="Shared" />
+  <Import Project="..\MyX3DParser.Utilities\MyX3DParser.Utilities.projitems" Label="Utilities" />
+
+  <Target Name="GenerateCode" BeforeTargets="CoreCompile">
+    <Exec Command="echo 'Generating files... $(ProjectDir)'" />
+    
+    <ItemGroup>
+      <Compile Remove="Generated/**/*$(DefaultLanguageSourceExtension)" />
+    </ItemGroup>
+    <Exec Command="dotnet run --project ../MyX3DParser.Generator/MyX3DParser.Generator.csproj -- &quot;$(ProjectDir).&quot;" />
+    <ItemGroup>
+      <Compile Include="Generated/**/*$(DefaultLanguageSourceExtension)" />
+    </ItemGroup>
+  </Target>
+</Project>

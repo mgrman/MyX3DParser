@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<X3D version="3.0">
+  <head>
+    <meta content="X3DRetreatProtoExercise.x3d" name="title" />
+    <meta content="Don Brutzman" name="creator" />
+    <meta content="25 May 2000" name="created" />
+    <meta content="20 October 2019" name="modified" />
+    <meta content="Contains multiple intentional warnings and errors, for validation testing purposes." name="error" />
+    <meta content="Solutions to the Proto Exercise posed by Chris Marrin of SONY at the May 2000 X3D Retreat. This exercise includes intentionally illegal VRML and does not render." name="description" />
+    <meta content="https://www.web3d.org/x3d/sony/X3DRetreatProtoEx.html" name="reference" />
+    <meta content="https://www.web3d.org/x3d/content/examples/development/X3DRetreatProtoExercise.x3d" name="identifier" />
+    <meta content="X3D-Edit 3.1, https://www.web3d.org/x3d/content/README.X3D-Edit.html" name="generator" />
+    <meta content="../license.html" name="license" />
+  </head>
+  <Scene>
+    <Switch DEF="aaa" />
+    <Transform DEF="T">
+      <Switch />
+      <Group DEF="G" />
+    </Transform>
+    <ColorDamper tau="-1" DEF="DAMPER" />
+    <ROUTE fromField="whichChoice" fromNode="aaa" toField="speed" toNode="bbb" />
+    <ROUTE fromField="stopTime" fromNode="bbb" toField="tau" toNode="DAMPER" />
+  </Scene>
+</X3D>

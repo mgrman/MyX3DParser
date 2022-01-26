@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<X3D >
+  <Scene>
+      <Transform scaleOrientation="1 1 1 0.7" scale="2 1 1">
+        <Shape>
+          <Appearance>
+            <Material diffuseColor='0.82 0.78 0.74'/>
+          </Appearance>
+          <IndexedFaceSet coordIndex='0 1 2 3 4 -1'>
+            <Coordinate point='0.0 0.0 0.0, 1.0 0.0 0.0, 1.0 1.0 0.0, 0.5 2.0 0.0, 0.0 1.0 0.0'/>
+          </IndexedFaceSet>
+        </Shape>
+      </Transform>
+  </Scene>
+</X3D>

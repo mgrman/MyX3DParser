@@ -1,0 +1,45 @@
+﻿@page "/babylon"
+@inject IJSRuntime JS
+
+<PageTitle>Show GLTF file</PageTitle>
+
+<h1>X3D to GLTF in Babylon.js</h1>
+
+@if (ErrorMessage != null)
+{
+    <b> @ErrorMessage</b>
+}
+
+<InputFile OnChange="@LoadFiles" />
+
+<br />
+
+<canvas @ref="canvas"/>
+
+
+@code {
+    private string? ErrorMessage = null;
+
+    private ElementReference canvas;
+
+    private async Task LoadFiles(InputFileChangeEventArgs e)
+    {
+        if (e.File == null || e.FileCount != 1)
+        {
+            ErrorMessage = "Please select single file!";
+            return;
+        }
+
+        ErrorMessage = null;
+        var x3d = await new StreamReader(e.File.OpenReadStream()).ReadToEndAsync();
+        
+        var fileStream = MyX3DParser.Generated.ConvertToGLTF.ConvertToGLBStream(x3d);
+        var fileName = $"{Path.GetFileNameWithoutExtension(e.File.Name)}.glb";
+
+        using var streamRef = new DotNetStreamReference(stream: fileStream);
+
+        var module = await JS.InvokeAsync<IJSObjectReference>(    "import", "./Pages/Babylon.razor.js");
+
+        await module.InvokeVoidAsync("showGltfFile", canvas, streamRef);
+    }
+}

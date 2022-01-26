@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE X3D PUBLIC "ISO//Web3D//DTD X3D 3.0//EN" "http://www.web3d.org/specifications/x3d-3.0.dtd">
+<X3D profile='Immersive' version='3.0' xmlns:xsd='http://www.w3.org/2001/XMLSchema-instance' xsd:noNamespaceSchemaLocation='http://www.web3d.org/specifications/x3d-3.0.xsd'>
+  <head>
+    <meta content='X3DRetreatProtoExercise.x3d' name='title'/>
+    <meta content='Don Brutzman' name='creator'/>
+    <meta content='25 May 2000' name='created'/>
+    <meta content='20 October 2019' name='modified'/>
+    <meta content='Contains multiple intentional warnings and errors, for validation testing purposes.' name='error'/>
+    <meta content='Solutions to the Proto Exercise posed by Chris Marrin of SONY at the May 2000 X3D Retreat. This exercise includes intentionally illegal VRML and does not render.' name='description'/>
+    <meta content='https://www.web3d.org/x3d/sony/X3DRetreatProtoEx.html' name='reference'/>
+    <meta content='https://www.web3d.org/x3d/content/examples/development/X3DRetreatProtoExercise.x3d' name='identifier'/>
+    <meta content='X3D-Edit 3.1, https://www.web3d.org/x3d/content/README.X3D-Edit.html' name='generator'/>
+    <meta content='../license.html' name='license'/>
+  </head>
+  <Scene>
+    <ProtoDeclare name='SpinGroup'>
+      <ProtoInterface>
+        <!-- Example 4 calls three of the field references ROUTEs, but they actually match VRML 97 'IS' statements. IS="TS.cycleInterval" IS="TS.startTime" IS="TS.stopTime" -->
+        <field accessType='inputOutput' name='speed' type='SFInt32' value='1'/>
+        <field accessType='initializeOnly' name='startTime' type='SFTime' value='0'/>
+        <field accessType='outputOnly' name='stopTime' type='SFTime' value='0'/>
+      </ProtoInterface>
+      <ProtoBody>
+        <!-- Corrected example by moving nodes T, G, TS and OI from PROTO interface to PROTO body. -->
+        <Transform DEF='T'>
+          <!-- EXPORT G (this is Blendo nomenclature, not VRML 97) -->
+          <Switch>
+            <IS>
+              <connect nodeField='whichChoice' protoField='speed'/>
+            </IS>
+          </Switch>
+     
+          <Group DEF='G'/>
+        </Transform>
+        <TimeSensor DEF='TS' loop='true'/>
+        <OrientationInterpolator DEF='OI' key='0 0.25 0.5 0.75 1' keyValue='0 1 0 0 0 1 0 1.57 0 1 0 3.14 0 1 0 4.71 0 1 0 0'/>
+        <Collision >
+          <IS>
+            <connect nodeField='collideTime' protoField='stopTime'/>
+          </IS>
+        </Collision>
+        <ROUTE fromField='fraction_changed' fromNode='TS' toField='set_fraction' toNode='OI'/>
+        <ROUTE fromField='value_changed' fromNode='OI' toField='set_rotation' toNode='T'/>
+      </ProtoBody>
+    </ProtoDeclare>
+    
+      <Switch DEF="aaa"/>
+      <ProtoInstance name='SpinGroup'  DEF="bbb">
+        <fieldValue name='speed' value='2'/>
+      </ProtoInstance>
+
+    <ColorDamper DEF='DAMPER'/>
+
+    <ROUTE fromField='whichChoice' fromNode='aaa' toField='speed' toNode='bbb'/>
+
+    <ROUTE fromField='stopTime' fromNode='bbb' toField='tau' toNode='DAMPER'/>
+  </Scene>
+</X3D>

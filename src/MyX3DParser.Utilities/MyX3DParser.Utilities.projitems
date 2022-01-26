@@ -1,0 +1,19 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <MSBuildAllProjects Condition="'$(MSBuildVersion)' == '' Or '$(MSBuildVersion)' &lt; '16.0'">$(MSBuildAllProjects);$(MSBuildThisFileFullPath)</MSBuildAllProjects>
+    <HasSharedItems>true</HasSharedItems>
+    <SharedGUID>4b878227-a0a2-41e7-ad95-a50f6f9fcdd5</SharedGUID>
+  </PropertyGroup>
+  <PropertyGroup Label="Configuration">
+    <Import_RootNamespace>MyX3DParser.Utilities</Import_RootNamespace>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="$(MSBuildThisFileDirectory)CodeAnalysisAttributes.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)LinqUtils.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)NullUtils.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)StringUtils.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ToStringUtils.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)XmlUtils.cs" />
+  </ItemGroup>
+</Project>

@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE X3D PUBLIC "ISO//Web3D//DTD X3D 3.0//EN" "http://www.web3d.org/specifications/x3d-3.0.dtd">
+<X3D profile='Immersive' version='3.0' xmlns:xsd='http://www.w3.org/2001/XMLSchema-instance' xsd:noNamespaceSchemaLocation='http://www.web3d.org/specifications/x3d-3.0.xsd'>
+  <head>
+    <meta content='SceneNodePrototype.x3d' name='title'/>
+    <meta content='Don Brutzman' name='creator'/>
+    <meta content='19 December 2000' name='created'/>
+    <meta content='20 October 2019' name='modified'/>
+    <meta content='Expose functionality of Browser class in Java/ECMAscript annexes of VRML 97 specification. Consider promotion to a native node in X3D/VRML 200x scenes.' name='description'/>
+    <meta content='Under development, many of these exposed attributes will be eliminated. Scene node will not be used in X3D proper, but may become a valuable prototype via SAI scripting.' name='warning'/>
+    <meta content='https://www.web3d.org/x3d/content/examples/Basic/development/SceneNodePrototype.x3d' name='identifier'/>
+    <meta content='X3D-Edit 3.3, https://savage.nps.edu/X3D-Edit' name='generator'/>
+    <meta content='../license.html' name='license'/>
+  </head>
+  <Scene>
+    <WorldInfo title='SceneNodePrototype.x3d'/>
+    <!-- Example invocation -->
+    <Shape>
+      <Text DEF='Output3dText' string='"Click text for partial Scene node test"'>
+        <FontStyle justify='"MIDDLE" "MIDDLE"' size='0.5'/>
+      </Text>
+      <Appearance>
+        <Material diffuseColor='0 0.6 0.6'/>
+      </Appearance>
+    </Shape>
+    <TouchSensor DEF='ClickTextSensor' description='Click text for partial Scene node test'/>
+    <Script DEF='AssembleBrowserOutputText'>
+      <field accessType='inputOnly' name='currentFrameRate' type='SFFloat'/>
+      <field accessType='inputOnly' name='currentSpeed' type='SFFloat'/>
+      <field accessType='inputOnly' name='name' type='SFString'/>
+      <field accessType='inputOnly' name='version' type='SFString'/>
+      <field accessType='inputOnly' name='worldUrl' type='SFString'/>
+      <field accessType='outputOnly' name='evaluatedResult' type='MFString'/>
+      <![CDATA[
+ecmascript:
+
+function initialize ()
+{
+	evaluatedResult = new MFString (
+		'Click for partial Scene node test:',
+		' ', ' ', ' ', ' ', ' ', ' ', ' ');
+}
+function currentFrameRate (inputValue, timeStamp)
+{
+	evaluatedResult [2] = 'currentFrameRate=' + inputValue;
+}
+function currentSpeed (inputValue, timeStamp)
+{
+	evaluatedResult [3] = 'currentSpeed=' + inputValue;
+}
+function version (inputValue, timeStamp)
+{
+	evaluatedResult [4] = 'version=' + inputValue;
+}
+function name (inputValue, timeStamp)
+{
+	evaluatedResult [5] = 'name=' + inputValue;
+}
+function worldUrl (inputValue, timeStamp)
+{
+	evaluatedResult [6] = 'worldUrl=';
+	evaluatedResult [7] = inputValue;
+}
+]]>
+    </Script>
+    <ROUTE fromField='isActive' fromNode='ClickTextSensor' toField='evaluate' toNode='SceneNode'/>
+    <ROUTE fromField='currentFrameRate' fromNode='SceneNode' toField='currentFrameRate' toNode='AssembleBrowserOutputText'/>
+    <ROUTE fromField='currentSpeed' fromNode='SceneNode' toField='currentSpeed' toNode='AssembleBrowserOutputText'/>
+    <ROUTE fromField='version' fromNode='SceneNode' toField='version' toNode='AssembleBrowserOutputText'/>
+    <ROUTE fromField='name' fromNode='SceneNode' toField='name' toNode='AssembleBrowserOutputText'/>
+    <ROUTE fromField='worldUrl' fromNode='SceneNode' toField='worldUrl' toNode='AssembleBrowserOutputText'/>
+    <ROUTE fromField='evaluatedResult' fromNode='AssembleBrowserOutputText' toField='string' toNode='Output3dText'/>
+  </Scene>
+</X3D>

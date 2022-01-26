@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "MyX3DParser.Generator": {
+      "commandName": "Project",
+      "workingDirectory": "..\\"
+    }
+  }
+}

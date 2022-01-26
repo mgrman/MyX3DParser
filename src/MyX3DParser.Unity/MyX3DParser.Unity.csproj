@@ -1,0 +1,41 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <LangVersion>preview</LangVersion>
+  </PropertyGroup>
+  <Import Project="UnityConfig.xml" />
+
+
+  <Import Project="..\MyX3DParser.Shared\MyX3DParser.Shared.projitems" Label="Shared" />
+  <Import Project="..\MyX3DParser.Utilities\MyX3DParser.Utilities.projitems" Label="Utilities" />
+  <ItemGroup>
+    <Reference Include="UnityEngine">
+      <HintPath>$(UnityEditorPath)/Editor\Data\Managed\UnityEngine\UnityEngine.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.CoreModule">
+      <HintPath>$(UnityEditorPath)/Editor/Data/Managed/UnityEngine/UnityEngine.CoreModule.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+
+  <Target Name="GenerateCode" BeforeTargets="CoreCompile">
+    <Exec Command="echo 'Generating files... $(ProjectDir)'" />
+
+    <ItemGroup>
+      <Compile Remove="Generated/**/*$(DefaultLanguageSourceExtension)" />
+    </ItemGroup>
+    <Exec Command="dotnet run --project ../MyX3DParser.Generator/MyX3DParser.Generator.csproj -- &quot;$(ProjectDir).&quot;" />
+    <ItemGroup>
+      <Compile Include="Generated/**/*$(DefaultLanguageSourceExtension)" />
+    </ItemGroup>
+  </Target>
+
+  <Target Name="PostBuild" AfterTargets="PostBuildEvent">
+    <Exec Command="(ROBOCOPY &quot;$(TargetDir).&quot; &quot;$(ProjectDir)..\MyX3DParser.Unity.Tests\Assets\Plugins&quot; &quot;MyX3DParser.*&quot;) ^&amp; IF %25ERRORLEVEL%25 LEQ 1 exit 0&#xD;&#xA;" Condition=" '$(OS)' == 'Windows_NT' " />
+  </Target>
+
+  <Target Name="PreBuild" BeforeTargets="PreBuildEvent">
+    <Exec Command="del /S /Q &quot;$(ProjectDir)..\MyX3DParser.Unity.Tests\Assets\Plugins\MyX3DParser.*&quot;" Condition=" '$(OS)' == 'Windows_NT' " />
+  </Target>
+</Project>

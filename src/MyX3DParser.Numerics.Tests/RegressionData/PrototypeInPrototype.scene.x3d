@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<X3D profile="Full" version="3.0">
+  <Scene>
+    <Group>
+      <Transform rotation="-0.57735 -0.57735 -0.57735 2.0944">
+        <Group />
+      </Transform>
+    </Group>
+  </Scene>
+</X3D>

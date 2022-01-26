@@ -1,0 +1,20 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>net6.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <LangVersion>preview</LangVersion>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="X3dUnifiedObjectModel-3.3.xml" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Include="X3dUnifiedObjectModel-3.3.xml" />
+  </ItemGroup>
+
+  <Import Project="..\MyX3DParser.Utilities\MyX3DParser.Utilities.projitems" Label="Utilities" />
+
+</Project>

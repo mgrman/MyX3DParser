@@ -1,0 +1,37 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <MSBuildAllProjects Condition="'$(MSBuildVersion)' == '' Or '$(MSBuildVersion)' &lt; '16.0'">$(MSBuildAllProjects);$(MSBuildThisFileFullPath)</MSBuildAllProjects>
+    <HasSharedItems>true</HasSharedItems>
+    <SharedGUID>a9a6a051-4487-48ba-92a7-b9ce39270c8a</SharedGUID>
+  </PropertyGroup>
+  <PropertyGroup Label="Configuration">
+    <Import_RootNamespace>MyX3DParser.Shared</Import_RootNamespace>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="$(MSBuildThisFileDirectory)Decomposer.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Nodes\Box.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Nodes\Sphere.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Nodes\Cylinder.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Nodes\Cone.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Nodes\IntegerSequencer.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Nodes\ProtoInstance.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Nodes\ROUTE.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Nodes\ScalarInterpolator.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Nodes\Scene.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Nodes\IndexedFaceSet.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Nodes\Shape.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Nodes\Switch.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Nodes\TimeSensor.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Parsing\Parser_ProtoDeclare.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Statements\ExternProtoDeclare.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Statements\ProtoDeclare.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)IX3DField.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)StaticConfig.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Utils\FieldNameAttribute.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Utils\MathUtils.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Utils\NotNullAttribute.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Utils\X3DUtils.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)X3DContext.cs" />
+  </ItemGroup>
+</Project>

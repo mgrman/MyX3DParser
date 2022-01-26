@@ -1,0 +1,7 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Project>
+  <!-- In your local repository, copy this file as UnityConfig.xml and replace the path below with path to your Unity installation. -->
+  <PropertyGroup>
+    <UnityEditorPath>C:\Program Files\Unity\Hub\Editor\2020.3.26f1</UnityEditorPath>
+  </PropertyGroup>
+</Project>
