@@ -1,5 +1,6 @@
 # MyX3DParser
 
+Demo where you can convert X3D to GLTF is available at [Demo](https://mgrman.github.io/MyX3DParser/)
 
 # X3D Standard
 https://www.web3d.org/documents/specifications/19775-1/V3.3/Part01/concepts.html
