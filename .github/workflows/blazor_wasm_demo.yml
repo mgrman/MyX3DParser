@@ -1,13 +1,11 @@
-name: .NET
+name: Build Blazor WASM demo
 env:
   PUBLISH_DIR: ./output
   PUBLISH_DIR_WWWROOT: ./output/wwwroot
 
 on:
   push:
-    branches: [ main ]
-  pull_request:
-    branches: [ main ]
+    branches: [ master ]
 
 jobs:
   build:
