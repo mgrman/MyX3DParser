@@ -1,0 +1,41 @@
+name: .NET
+env:
+  PUBLISH_DIR: ./output
+  PUBLISH_DIR_WWWROOT: ./output/wwwroot
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+    - name: Setup .NET
+      uses: actions/setup-dotnet@v1
+      with:
+        dotnet-version: 6.0.x
+    - name: Restore dependencies
+      run: dotnet restore ./src/MyX3DParser.Blazor/MyX3DParser.Blazor.csproj
+    - name: Build
+      run: dotnet publish ./src/MyX3DParser.Blazor/MyX3DParser.Blazor.csproj --no-restore --configuration Release --output  ${{ env.PUBLISH_DIR }}
+    - name: Rewrite base href
+      if: success()
+      uses: mgrman/ghaction-rewrite-base-href@master
+      with:
+        html_path: ${{ env.PUBLISH_DIR_WWWROOT }}/index.html
+        base_href: ${{ github.event.repository.name }}
+        root_path: ${{ env.PUBLISH_DIR_WWWROOT }}
+    - name: Commit to GitHub pages Repo
+      if: success()
+      uses: crazy-max/ghaction-github-pages@v1.5.1
+      with:
+        target_branch: gh-pages
+        build_dir: ${{ env.PUBLISH_DIR_WWWROOT }}
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
