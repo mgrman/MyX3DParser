@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<X3D>
+  <Scene>
+    <Transform>
+      <Group DEF="item1" />
+      <Group DEF="item2" />
+    </Transform>
+  </Scene>
+</X3D>

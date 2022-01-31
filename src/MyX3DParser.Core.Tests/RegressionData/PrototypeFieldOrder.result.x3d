@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<X3D>
+  <Scene>
+    <ProtoDeclare name="Proto1">
+      <ProtoInterface>
+        <field accessType="initializeOnly" name="objects" type="MFNode" />
+      </ProtoInterface>
+      <ProtoBody>
+        <Transform>
+          <IS>
+            <connect nodeField="children" protoField="objects" />
+          </IS>
+        </Transform>
+      </ProtoBody>
+    </ProtoDeclare>
+    <ProtoInstance name="Proto1">
+      <fieldValue name="objects">
+        <Group DEF="item1" />
+        <Group DEF="item2" />
+      </fieldValue>
+    </ProtoInstance>
+  </Scene>
+</X3D>
